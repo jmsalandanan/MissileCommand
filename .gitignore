@@ -1,0 +1,63 @@
+# Xcode
+build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+
+# Unity
+*.csproj
+*/*csproj
+*.sln
+*.vcproject
+*.pidb
+*.csproj
+*.exe
+
+# Mac
+.DS_Store
+*.DS_Store
+**/.DS_Store
+**/**/.DS_Store
+
+# Git Conflicts
+*.BASE
+*.MINE
+*.OTHER
+
+# monodevelop project files
+unitysrc/Library
+unitysrc/Temp
+unitysrc/Assembly-CSharp-Editor-vs.csproj
+unitysrc/Assembly-CSharp-Editor.csproj
+unitysrc/Assembly-CSharp-firstpass-vs.csproj
+unitysrc/Assembly-CSharp-firstpass.pidb
+unitysrc/Assembly-CSharp-vs.csproj
+unitysrc/Assembly-CSharp.csproj
+unitysrc/Assembly-CSharp.pidb
+unitysrc/Assembly-UnityScript.pidb
+unitysrc/assembly-csharp-firstpass.csproj
+unitysrc/assembly-unityscript-vs.unityproj
+unitysrc/assembly-unityscript.unityproj
+unitysrc/Assembly-UnityScript-Editor-firstpass-vs.unityproj
+unitysrc/Assembly-UnityScript-Editor-firstpass.unityproj
+unitysrc/Assembly-UnityScript-firstpass-vs.unityproj
+unitysrc/Assembly-UnityScript-firstpass.unityproj
+unitysrc/Assembly-UnityScript-vs.unityproj
+unitysrc/Assembly-UnityScript.unityproj
+unitysrc/unitysrc.userprefs
+unitysrc/Assembly-Boo-vs.booproj
+unitysrc/Assembly-Boo.booproj
+
+.DS_Store
+
+*.userprefs

@@ -19,19 +19,25 @@ public class EnemyController : MonoBehaviour {
 	private void addSignals(){
 		EnemySignals.enemyRelease.add (onEnemyRelease);
 		EnemySignals.explodeSignal.add (onExplode);
+		EnemySignals.checkEnemies.add (onCheck);
 	}
 	
 	private void removeSignals(){
 		EnemySignals.enemyRelease.remove (onEnemyRelease);
 		EnemySignals.explodeSignal.remove (onExplode);
+		EnemySignals.checkEnemies.remove (onCheck);
 	}
 	
 	private void onEnemyRelease(){
-		_enemyMediator.releaseEnemy();
+		_enemyMediator.releaseEnemy(_enemyProxy.EnemyDO.randSpawnPoint);
 	}
 	
 	private void onExplode(){
 		_enemyMediator.explode();
+	}
+	
+	private void onCheck(){
+		_enemyMediator.checkEnemy();
 	}
 	
 	public void init(){
@@ -43,8 +49,8 @@ public class EnemyController : MonoBehaviour {
 		_enemyMediator = gameObject.AddComponent<EnemyMediator>();
 		_enemyMediator.init();
 		
-		//_enemyProxy = new EnemyProxy();
-		//_enemyProxy.init();
+		_enemyProxy = new EnemyProxy();
+		_enemyProxy.init();
 	}
 	
 	public void destroy(){

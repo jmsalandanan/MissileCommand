@@ -1,15 +1,20 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemyProxy : MonoBehaviour {
+public class EnemyProxy {
 
-	// Use this for initialization
-	void Start () {
+private EnemyDO _enemyDO;
+
+	public EnemyDO EnemyDO {
+		get {
+			return this._enemyDO;
+		}
+		set {
+			_enemyDO = value;
+		}
+	}		
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public void init(){
+		_enemyDO = new EnemyDO();
 	}
 }

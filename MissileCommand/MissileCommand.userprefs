@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MVC/ViewComponents/EnemyView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MVC/EnemyMediator.cs">
     <Files>
-      <File FileName="Assets/Scripts/MVC/ViewComponents/EnemyView.cs" Line="39" Column="2" />
-      <File FileName="Assets/Scripts/MVC/EnemyController.cs" Line="30" Column="33" />
-      <File FileName="Assets/Scripts/MVC/EnemyMediator.cs" Line="24" Column="70" />
+      <File FileName="Assets/Scripts/MVC/ViewComponents/EnemyView.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MVC/EnemyController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MVC/EnemyMediator.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MVC/EnemyProxy.cs" Line="1" Column="1" />
-      <File FileName="Assets/ScriptsMVC/TestMVC/TestMVCMediator.cs" Line="24" Column="3" />
+      <File FileName="Assets/ScriptsMVC/TestMVC/TestMVCMediator.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,9 +17,8 @@
                 <Node name="Main" expanded="True" />
                 <Node name="MVC" expanded="True">
                   <Node name="DataObjects" expanded="True" />
-                  <Node name="ViewComponents" expanded="True">
-                    <Node name="EnemyView.cs" selected="True" />
-                  </Node>
+                  <Node name="ViewComponents" expanded="True" />
+                  <Node name="EnemyMediator.cs" selected="True" />
                 </Node>
                 <Node name="Signals" expanded="True" />
                 <Node name="Utilities" expanded="True">

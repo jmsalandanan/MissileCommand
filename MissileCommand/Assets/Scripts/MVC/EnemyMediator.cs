@@ -17,10 +17,13 @@ public class EnemyMediator : MonoBehaviour {
 		_enemyView = gameObject.AddComponent<EnemyView>();
 		_enemyView.init();
 	}
-	public void releaseEnemy(){
-		_enemyView.dropEnemy();
+	public void releaseEnemy(Vector3 position){
+		_enemyView.dropEnemy(position);
 	}
 	public void explode(){
 		_enemyView.explosion();//store coordinates to db? then send it here	
+	}
+	public void checkEnemy(){
+		_enemyView.checkConditions();	
 	}
 }

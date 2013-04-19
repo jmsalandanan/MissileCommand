@@ -21,7 +21,7 @@ public class EnemyMediator : MonoBehaviour {
 		_enemyView.dropEnemy(position);
 	}
 	public void explode(){
-		_enemyView.explosion();//store coordinates to db? then send it here	
+		//_enemyView.explosion();//store coordinates to db? then send it here	
 	}
 	public void checkEnemy(){
 		_enemyView.checkConditions();	

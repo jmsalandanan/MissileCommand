@@ -44,13 +44,19 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\MVC\DataObjects\EnemyDO.cs" />
-     <Compile Include="Assets\Scripts\MVC\EnemyController.cs" />
-     <Compile Include="Assets\Scripts\MVC\EnemyMediator.cs" />
-     <Compile Include="Assets\Scripts\MVC\EnemyProxy.cs" />
-     <Compile Include="Assets\Scripts\MVC\ViewComponents\EnemyView.cs" />
+     <Compile Include="Assets\Scripts\MVCClasses\Enemy\Classes\EnemyController.cs" />
+     <Compile Include="Assets\Scripts\MVCClasses\Enemy\Classes\EnemyMediator.cs" />
+     <Compile Include="Assets\Scripts\MVCClasses\Enemy\Classes\EnemyProxy.cs" />
+     <Compile Include="Assets\Scripts\MVCClasses\Enemy\DataObjects\EnemyDO.cs" />
+     <Compile Include="Assets\Scripts\MVCClasses\Enemy\Signals\EnemySignals.cs" />
+     <Compile Include="Assets\Scripts\MVCClasses\Enemy\ViewComponents\EnemyView.cs" />
+     <Compile Include="Assets\Scripts\MVCClasses\Player\Classes\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\MVCClasses\Player\Classes\PlayerMediator.cs" />
+     <Compile Include="Assets\Scripts\MVCClasses\Player\Classes\PlayerProxy.cs" />
+     <Compile Include="Assets\Scripts\MVCClasses\Player\DataObjects\PlayerDO.cs" />
+     <Compile Include="Assets\Scripts\MVCClasses\Player\Signals\PlayerSignals.cs" />
+     <Compile Include="Assets\Scripts\MVCClasses\Player\ViewComponents\PlayerView.cs" />
      <Compile Include="Assets\Scripts\Main\MainApplication.cs" />
-     <Compile Include="Assets\Scripts\Signals\EnemySignals.cs" />
      <Compile Include="Assets\Scripts\Utilities\Signal\Signal.cs" />
      <Compile Include="Assets\ScriptsMVC\Enum\DirectionType.cs" />
      <Compile Include="Assets\ScriptsMVC\Signals\TestSignals.cs" />

@@ -10,15 +10,12 @@ public class TestMVCMediator : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
-	
+	void Update () {	
+	}	
 	public void init(){
 		_testView = gameObject.AddComponent<TestView>();
 		_testView.init();
 	}
-	
 	public void updateScale(Vector3 scale){
 		_testView.updateCubeScale(scale);
 	}

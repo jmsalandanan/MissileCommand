@@ -1,12 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MVC/EnemyMediator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MVCClasses/Enemy/ViewComponents/EnemyView.cs">
     <Files>
-      <File FileName="Assets/Scripts/MVC/ViewComponents/EnemyView.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MVC/EnemyController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MVC/EnemyMediator.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MVC/EnemyProxy.cs" Line="1" Column="1" />
-      <File FileName="Assets/ScriptsMVC/TestMVC/TestMVCMediator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MVCClasses/Enemy/Classes/EnemyMediator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MVCClasses/Enemy/Classes/EnemyController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MVCClasses/Enemy/ViewComponents/EnemyView.cs" Line="38" Column="46" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,14 +13,13 @@
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
                 <Node name="Main" expanded="True" />
-                <Node name="MVC" expanded="True">
-                  <Node name="DataObjects" expanded="True" />
-                  <Node name="ViewComponents" expanded="True" />
-                  <Node name="EnemyMediator.cs" selected="True" />
-                </Node>
-                <Node name="Signals" expanded="True" />
-                <Node name="Utilities" expanded="True">
-                  <Node name="Signal" expanded="True" />
+                <Node name="MVCClasses" expanded="True">
+                  <Node name="Enemy" expanded="True">
+                    <Node name="ViewComponents" expanded="True">
+                      <Node name="EnemyView.cs" selected="True" />
+                    </Node>
+                  </Node>
+                  <Node name="Player" expanded="True" />
                 </Node>
               </Node>
               <Node name="ScriptsMVC" expanded="True">

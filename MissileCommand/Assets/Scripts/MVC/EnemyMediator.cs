@@ -1,0 +1,26 @@
+using UnityEngine;
+using System.Collections;
+
+public class EnemyMediator : MonoBehaviour {
+	private EnemyView _enemyView;
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+	public void init(){
+		_enemyView = gameObject.AddComponent<EnemyView>();
+		_enemyView.init();
+	}
+	public void releaseEnemy(){
+		_enemyView.dropEnemy();
+	}
+	public void explode(){
+		_enemyView.explosion();//store coordinates to db? then send it here	
+	}
+}

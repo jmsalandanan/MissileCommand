@@ -1,0 +1,50 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MVC/ViewComponents/EnemyView.cs">
+    <Files>
+      <File FileName="Assets/Scripts/MVC/ViewComponents/EnemyView.cs" Line="39" Column="2" />
+      <File FileName="Assets/Scripts/MVC/EnemyController.cs" Line="30" Column="33" />
+      <File FileName="Assets/Scripts/MVC/EnemyMediator.cs" Line="24" Column="70" />
+      <File FileName="Assets/Scripts/MVC/EnemyProxy.cs" Line="1" Column="1" />
+      <File FileName="Assets/ScriptsMVC/TestMVC/TestMVCMediator.cs" Line="24" Column="3" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Main" expanded="True" />
+                <Node name="MVC" expanded="True">
+                  <Node name="DataObjects" expanded="True" />
+                  <Node name="ViewComponents" expanded="True">
+                    <Node name="EnemyView.cs" selected="True" />
+                  </Node>
+                </Node>
+                <Node name="Signals" expanded="True" />
+                <Node name="Utilities" expanded="True">
+                  <Node name="Signal" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="ScriptsMVC" expanded="True">
+                <Node name="Enum" expanded="True" />
+                <Node name="Signals" expanded="True" />
+                <Node name="TestMVC" expanded="True">
+                  <Node name="DataObjects" expanded="True" />
+                  <Node name="ViewComponents" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

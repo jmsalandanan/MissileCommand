@@ -57,18 +57,13 @@
      <Compile Include="Assets\Scripts\MVCClasses\Player\Signals\PlayerSignals.cs" />
      <Compile Include="Assets\Scripts\MVCClasses\Player\ViewComponents\PlayerView.cs" />
      <Compile Include="Assets\Scripts\Main\MainApplication.cs" />
+     <Compile Include="Assets\Scripts\Utilities\MouseLook.cs" />
      <Compile Include="Assets\Scripts\Utilities\Signal\Signal.cs" />
-     <Compile Include="Assets\ScriptsMVC\Enum\DirectionType.cs" />
-     <Compile Include="Assets\ScriptsMVC\Signals\TestSignals.cs" />
-     <Compile Include="Assets\ScriptsMVC\TestMVC\DataObjects\TestDO.cs" />
-     <Compile Include="Assets\ScriptsMVC\TestMVC\TestMVCController.cs" />
-     <Compile Include="Assets\ScriptsMVC\TestMVC\TestMVCMediator.cs" />
-     <Compile Include="Assets\ScriptsMVC\TestMVC\TestMVCProxy.cs" />
-     <Compile Include="Assets\ScriptsMVC\TestMVC\ViewComponents\TestView.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Turret\Shaders\AlphaTest_Complete.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
  <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>

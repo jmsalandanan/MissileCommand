@@ -1,15 +1,20 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerProxy : MonoBehaviour {
+public class PlayerProxy {
 
-	// Use this for initialization
-	void Start () {
+private PlayerDO _playerDO;
+
+	public PlayerDO PlayerDO {
+		get {
+			return this._playerDO;
+		}
+		set {
+			_playerDO = value;
+		}
+	}		
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public void init(){
+		_playerDO = new PlayerDO();
 	}
 }

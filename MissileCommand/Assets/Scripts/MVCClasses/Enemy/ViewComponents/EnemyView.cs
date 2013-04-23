@@ -15,13 +15,15 @@ public class EnemyView : MonoBehaviour {
 	private GameObject _explosion4;
 	private GameObject _explosion5;
 	public Vector3 randSpawnPoint;
+	private RaycastHit _enemyLine;
 	private int x;
 	private int randSpawnTrigger;
 	private int nextWaveCounter;
  	private List<GameObject> _units = new List<GameObject>();
 	private List<GameObject> _explosions = new List<GameObject>();
+	 public static Collider enemyCollision1 = new Collider();
+	 public static int score= 0;
 	private float delay = 0;
-	private float spawnDelay = 0;
  
 
 	void Start () {
@@ -34,36 +36,43 @@ public class EnemyView : MonoBehaviour {
 		EnemySignals.checkEnemies.dispatch();
 		
 		randSpawnTrigger = Random.Range (0,10);
-		spawnDelay +=Time.deltaTime;
-		if(randSpawnTrigger == 5&&x<5&&spawnDelay>2)
-		{
-			EnemySignals.enemyRelease.dispatch();
-			spawnDelay = 0;
-		}
 		if(nextWaveCounter == 5)
 		{
 			delay +=Time.deltaTime;
-			if(delay>1)
+			if(delay>0.1)
 			{
 				x = 0;
 			nextWaveCounter = 0;
+				/*
 			_explosion.SetActive(false);
 			_explosion2.SetActive(false);
 			_explosion3.SetActive(false);
 			_explosion4.SetActive(false);
-			_explosion5.SetActive(false);	
+			_explosion5.SetActive(false);	*/
 				delay = 0;
 			}		
 		}		
+
+		if(randSpawnTrigger == 5&&x<5)
+		{
+			EnemySignals.enemyRelease.dispatch();
+		}
+		
 	}
 		
 	public void init(){
-		_bomb = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Bomb"));
-		_bomb2 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Bomb"));
-		_bomb3 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Bomb"));
-		_bomb4 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Bomb"));
-		_bomb5 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Bomb"));
+		_bomb = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Enemy"));
+		_bomb2 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Enemy"));
+		_bomb3 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Enemy"));
+		_bomb4 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Enemy"));
+		_bomb5 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Enemy"));
 		
+		_bomb.name = "bomb1";
+		_bomb2.name = "bomb2";
+		_bomb3.name = "bomb3";
+		_bomb4.name = "bomb4";
+		_bomb5.name = "bomb5";
+				
 		_units.Add(_bomb);
 		_units.Add(_bomb2);
 		_units.Add(_bomb3);
@@ -82,11 +91,11 @@ public class EnemyView : MonoBehaviour {
 		_explosions.Add(_explosion4);
 		_explosions.Add(_explosion5);
 		
-		_explosion.SetActive(false);
-		_explosion2.SetActive(false);
-		_explosion3.SetActive(false);
-		_explosion4.SetActive(false);
-		_explosion5.SetActive(false);
+		_explosion.particleEmitter.emit = false;
+		_explosion2.particleEmitter.emit = false;
+		_explosion3.particleEmitter.emit = false;
+		_explosion4.particleEmitter.emit = false;
+		_explosion5.particleEmitter.emit = false;
 		x=0; 
 		nextWaveCounter = 0;
 	}
@@ -97,41 +106,60 @@ public class EnemyView : MonoBehaviour {
 	_units[x].SetActive(true);
 	x=x+1;
 	}	
-	
-	public void spawnExplosion(Vector3 position){
 		
-			foreach(GameObject explosionIns in _explosions){
-				if(!explosionIns.activeSelf){
-				explosionIns.transform.position = position;
-				explosionIns.SetActive(true);
-				break;
-				}
-			}
-	}
-	
 public void checkConditions()
 {
 	foreach(GameObject _bombIns in _units)
 		{
 		if(_bombIns!=null)
 			{			
-			if(_bombIns.transform.position.y<=2.0f&&_bombIns.activeSelf)
-				{	
-					Debug.Log ("Collision!");
-					//_explosion = (GameObject) GameObject.Instantiate((Resources.Load("Prefabs/BombExplosion")),_bombIns.transform.position,Quaternion.Euler(_bombIns.transform.position));
-					_bombIns.SetActive(false);
-					spawnExplosion(_bombIns.transform.position);
-					//Destroy (_explosion,0.5f);
-					nextWaveCounter++;
+			if(_bombIns.transform.position.y<=2.0f&&_bombIns.activeSelf){	
+						_bombIns.SetActive(false);
+						explodeAnimation(_bombIns.transform.position);
+						Vector3 rayDirection = transform.TransformDirection(Vector3.down);		
+						if(Physics.Raycast(_bombIns.transform.position,rayDirection,out _enemyLine,5f)){				
+						if(_enemyLine.collider.gameObject.CompareTag("base")){
+           		 	 	Debug.DrawLine(_bombIns.transform.position, _enemyLine.point, Color.red);
+						enemyCollision1 = _enemyLine.collider;
+						Debug.Log ("Enemy hits something");
+						Debug.Log (enemyCollision1.name);
+						PlayerSignals.destroyBase.dispatch();
+						}
+					}				
 				}
 			if(_bombIns.activeSelf)
 				{
-					_bombIns.transform.Translate(0,-0.1f,0);
-				}
-			
+					_bombIns.transform.Translate(0,0.05f,0);
+				
+				}	
 			}
-		}	 
-}
+		}
+}	
+	public void enemyHit(string name)
+	{
+		foreach(GameObject _bombIns in _units)
+		{
+			if(_bombIns.name == PlayerView.collider1.name)
+			{
+				explodeAnimation(_bombIns.transform.position);
+				_bombIns.SetActive(false);
 
-
+				score +=10;
+			}
+		}
+	}
+	
+	public void explodeAnimation(Vector3 position)
+	{
+		foreach(GameObject _explosionIns in _explosions)
+					{			
+						//if(!_explosionIns.activeSelf)
+						//{	
+							_explosionIns.transform.position = position;
+							_explosionIns.particleEmitter.Emit(100);							
+							nextWaveCounter++;
+							break;
+						//}
+					}	
+	}
 }

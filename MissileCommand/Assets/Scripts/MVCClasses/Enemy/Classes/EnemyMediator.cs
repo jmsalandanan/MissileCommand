@@ -26,4 +26,7 @@ public class EnemyMediator : MonoBehaviour {
 	public void checkEnemy(){
 		_enemyView.checkConditions();	
 	}
+	public void enemyHit(string name){
+		_enemyView.enemyHit(name);
+	}
 }

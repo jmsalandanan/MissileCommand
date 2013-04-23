@@ -1,15 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerSignals : MonoBehaviour {
+public class PlayerSignals {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public static Signal fireSignal = new Signal();
+	public static Signal passCollider = new Signal();
+	public static Signal destroyBase = new Signal();
 }

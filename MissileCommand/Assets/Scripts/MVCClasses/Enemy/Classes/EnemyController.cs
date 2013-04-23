@@ -20,12 +20,14 @@ public class EnemyController : MonoBehaviour {
 		EnemySignals.enemyRelease.add (onEnemyRelease);
 		EnemySignals.explodeSignal.add (onExplode);
 		EnemySignals.checkEnemies.add (onCheck);
+		EnemySignals.destroyEnemy.add (onDestroy);
 	}
 	
 	private void removeSignals(){
 		EnemySignals.enemyRelease.remove (onEnemyRelease);
 		EnemySignals.explodeSignal.remove (onExplode);
 		EnemySignals.checkEnemies.remove (onCheck);
+		EnemySignals.destroyEnemy.remove (onDestroy);
 	}
 	
 	private void onEnemyRelease(){
@@ -38,6 +40,10 @@ public class EnemyController : MonoBehaviour {
 	
 	private void onCheck(){
 		_enemyMediator.checkEnemy();
+	}
+	
+	private void onDestroy(){
+		_enemyMediator.enemyHit(name);	
 	}
 	
 	public void init(){

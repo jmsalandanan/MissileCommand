@@ -1,34 +1,28 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MVCClasses/Enemy/ViewComponents/EnemyView.cs">
-    <Files>
-      <File FileName="Assets/Scripts/MVCClasses/Enemy/Classes/EnemyMediator.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MVCClasses/Enemy/Classes/EnemyController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MVCClasses/Enemy/ViewComponents/EnemyView.cs" Line="38" Column="46" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Main" expanded="True" />
+                <Node name="Main" expanded="True">
+                  <Node name="MainApplication.cs" selected="True" />
+                </Node>
                 <Node name="MVCClasses" expanded="True">
                   <Node name="Enemy" expanded="True">
-                    <Node name="ViewComponents" expanded="True">
-                      <Node name="EnemyView.cs" selected="True" />
-                    </Node>
+                    <Node name="Classes" expanded="True" />
+                    <Node name="Signals" expanded="True" />
+                    <Node name="ViewComponents" expanded="True" />
                   </Node>
-                  <Node name="Player" expanded="True" />
+                  <Node name="Player" expanded="True">
+                    <Node name="Classes" expanded="True" />
+                    <Node name="Signals" expanded="True" />
+                    <Node name="ViewComponents" expanded="True" />
+                  </Node>
                 </Node>
-              </Node>
-              <Node name="ScriptsMVC" expanded="True">
-                <Node name="Enum" expanded="True" />
-                <Node name="Signals" expanded="True" />
-                <Node name="TestMVC" expanded="True">
-                  <Node name="DataObjects" expanded="True" />
-                  <Node name="ViewComponents" expanded="True" />
-                </Node>
+                <Node name="Utilities" expanded="True" />
               </Node>
             </Node>
           </Node>

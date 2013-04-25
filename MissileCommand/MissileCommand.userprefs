@@ -7,12 +7,12 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Main" expanded="True">
-                  <Node name="MainApplication.cs" selected="True" />
-                </Node>
+                <Node name="Main" expanded="True" />
                 <Node name="MVCClasses" expanded="True">
                   <Node name="Enemy" expanded="True">
-                    <Node name="Classes" expanded="True" />
+                    <Node name="Classes" expanded="True">
+                      <Node name="EnemyMediator.cs" selected="True" />
+                    </Node>
                     <Node name="Signals" expanded="True" />
                     <Node name="ViewComponents" expanded="True" />
                   </Node>

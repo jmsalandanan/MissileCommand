@@ -54,7 +54,7 @@ public class PlayerView:MonoBehaviour {
 		_playerWeaponFire = GameObject.Find ("Flame");
 		_playerWeaponFire.particleEmitter.emit = false;
 		for(int x=0;x<4;x++){
-			_basePosition = new Vector3(_basePositionX,0f,Random.Range (-6.5f,-2f));
+			_basePosition = new Vector3(_basePositionX,0f,-2f);
 			_baseList[x].transform.position= _basePosition;
 			_basePositionX += 5;
 		}
@@ -78,22 +78,26 @@ public class PlayerView:MonoBehaviour {
 	}
 	
 	public void fireWeapon(){
-		if (Physics.Raycast(ray, out hit, Mathf.Infinity)&&playerAmmo!=0) //remove layerMask if you remove it in line above
+		if(playerAmmo!=0)
+		{
+		if (Physics.Raycast(ray, out hit, Mathf.Infinity)) //remove layerMask if you remove it in line above
         		{
 			    // Create the actual Ray based on the screen vector above
            		//stores the object hit
             	collider1 = hit.collider;
-				playerAmmo -=1;
+				
             	// Draws a line to show the actual ray.
             	Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
             	Debug.Log(collider1.name); // Outputs the name of the object hit
 				Debug.Log (hit);
 				localHit = transform.InverseTransformPoint(hit.point);
 				Debug.Log (localHit);
-				_playerWeapon.animation.Play("shoot");
-				_playerWeaponFire.particleEmitter.Emit(1);
 				EnemySignals.destroyEnemy.dispatch();
 
+		}
+		_playerWeapon.animation.Play("shoot");
+		_playerWeaponFire.particleEmitter.Emit(1);
+		playerAmmo -=1;
 		}
 
 } 

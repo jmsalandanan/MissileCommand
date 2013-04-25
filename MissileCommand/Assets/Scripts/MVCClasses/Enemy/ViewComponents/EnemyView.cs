@@ -24,6 +24,8 @@ public class EnemyView : MonoBehaviour {
 	 public static Collider enemyCollision1 = new Collider();
 	 public static int score= 0;
 	private float delay = 0;
+	private int ENEMY_COUNT = 5;
+	private int EXPLOSION_COUNT = 5;
  
 
 	void Start () {
@@ -61,47 +63,25 @@ public class EnemyView : MonoBehaviour {
 	}
 		
 	public void init(){
-		_bomb = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Enemy"));
-		_bomb2 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Enemy"));
-		_bomb3 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Enemy"));
-		_bomb4 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Enemy"));
-		_bomb5 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/Enemy"));
+		//Initializations for bomb and explosions.
+		for(int bmbCtr = 0; bmbCtr<ENEMY_COUNT; bmbCtr++){
+		Bomb _bomb = new Bomb();
+		_units.Add (_bomb.init());
+		_units[bmbCtr].name = "bomb"+bmbCtr;
+		}
 		
-		_bomb.name = "bomb1";
-		_bomb2.name = "bomb2";
-		_bomb3.name = "bomb3";
-		_bomb4.name = "bomb4";
-		_bomb5.name = "bomb5";
-				
-		_units.Add(_bomb);
-		_units.Add(_bomb2);
-		_units.Add(_bomb3);
-		_units.Add(_bomb4);
-		_units.Add(_bomb5);
+		for(int explosionCtr = 0; explosionCtr<EXPLOSION_COUNT; explosionCtr++){
+		Explosion _explosion = new Explosion();
+		_explosions.Add(_explosion.init());
+		_explosions[explosionCtr].particleEmitter.emit = false;
+		}
 		
-		_explosion = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/BombExplosion"));
-		_explosion2 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/BombExplosion"));
-		_explosion3 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/BombExplosion"));
-		_explosion4 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/BombExplosion"));
-		_explosion5 = (GameObject) GameObject.Instantiate(Resources.Load("Prefabs/BombExplosion"));
-
-		_explosions.Add(_explosion);
-		_explosions.Add(_explosion2);
-		_explosions.Add(_explosion3);
-		_explosions.Add(_explosion4);
-		_explosions.Add(_explosion5);
-		
-		_explosion.particleEmitter.emit = false;
-		_explosion2.particleEmitter.emit = false;
-		_explosion3.particleEmitter.emit = false;
-		_explosion4.particleEmitter.emit = false;
-		_explosion5.particleEmitter.emit = false;
 		x=0; 
 		nextWaveCounter = 0;
 	}
 
 	public void dropEnemy(Vector3 position){
-	randSpawnPoint = new Vector3(Random.Range (-9.5f,8.0f),20,Random.Range (-6.5f,-2f));
+	randSpawnPoint = new Vector3(Random.Range (-9.5f,8.0f),20,-2f);
 	_units[x].transform.position = randSpawnPoint;
 	_units[x].SetActive(true);
 	x=x+1;
@@ -130,7 +110,6 @@ public void checkConditions()
 			if(_bombIns.activeSelf)
 				{
 					_bombIns.transform.Translate(0,0.05f,0);
-				
 				}	
 			}
 		}

@@ -22,6 +22,7 @@ public class PlayerView:MonoBehaviour {
 	private GameObject _playerWeapon;
 	private GameObject _playerWeaponFire;
 	private GameObject _base5;
+	public static bool paused = false;
 	public static int playerLife =4;
 	private List <GameObject> _baseList = new List<GameObject>();
 	public Transform cameraTransform = Camera.main.transform;
@@ -62,39 +63,40 @@ public class PlayerView:MonoBehaviour {
 	}
 	
     void Update () {
-      
+     
+		if(!paused){
         // Find the centre of the Screen
         vec.x = (float)Screen.width / 2;
         vec.y = (float)Screen.height / 2;
         vec.z = 0;
 
-		if(Input.GetButtonDown("Fire1"))
-		{
+		if(Input.GetButtonDown("Fire1")){
 			ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 			PlayerSignals.fireSignal.dispatch();
 		}
+		
+		if(playerLife <=0){
+			Debug.Log ("Game Over");	
+		}
+		  if(Input.GetKey(KeyCode.P))
+         //paused = togglePause();
+				PlayerSignals.onPause.dispatch();
 
+		}
 
 	}
 	
 	public void fireWeapon(){
-		if(playerAmmo!=0)
-		{
-		if (Physics.Raycast(ray, out hit, Mathf.Infinity)) //remove layerMask if you remove it in line above
-        		{
-			    // Create the actual Ray based on the screen vector above
-           		//stores the object hit
+		if(playerAmmo!=0){
+			if (Physics.Raycast(ray, out hit, Mathf.Infinity)){
             	collider1 = hit.collider;
-				
-            	// Draws a line to show the actual ray.
             	Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
-            	Debug.Log(collider1.name); // Outputs the name of the object hit
+            	Debug.Log(collider1.name);
 				Debug.Log (hit);
 				localHit = transform.InverseTransformPoint(hit.point);
 				Debug.Log (localHit);
 				EnemySignals.destroyEnemy.dispatch();
-
-		}
+			}
 		_playerWeapon.animation.Play("shoot");
 		_playerWeaponFire.particleEmitter.Emit(1);
 		playerAmmo -=1;
@@ -108,8 +110,7 @@ public class PlayerView:MonoBehaviour {
 	public void deactivateBase(){
 		foreach(GameObject _baseIns in _baseList)
 		{
-			if(_baseIns.name == EnemyView.enemyCollision1.name)
-			{
+			if(_baseIns.name == EnemyView.enemyCollision1.name){
 				_baseIns.SetActive(false);
 				playerLife -= 1;
 				Debug.Log (playerLife);
@@ -118,4 +119,27 @@ public class PlayerView:MonoBehaviour {
 		}
 			
 	}
+	 
+    public bool togglePause(){
+       if(Time.timeScale == 0f){
+
+		PlayerSignals.enableSignals.dispatch();
+		EnemySignals.enableSignals.dispatch();
+		PlayerSignals.showPauseMenu.dispatch();
+		GameObject.Find ("Player").GetComponent<MouseLook>().enabled = true;
+		Debug.Log ("UnPause");
+		Time.timeScale = 1f;
+         return(false);
+       }
+       else{
+		Debug.Log ("Pause");
+		PlayerSignals.disableSignals.dispatch();
+		EnemySignals.disableSignals.dispatch();
+		PlayerSignals.showPauseMenu.dispatch();
+		GameObject.Find ("Player").GetComponent<MouseLook>().enabled = false;
+		Time.timeScale = 0f;
+         return(true);    
+       }
+    }
+	
 }

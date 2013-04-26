@@ -16,18 +16,22 @@ public class EnemyController : MonoBehaviour {
 	
 	}
 	
-	private void addSignals(){
+	public void addSignals(){
 		EnemySignals.enemyRelease.add (onEnemyRelease);
 		EnemySignals.explodeSignal.add (onExplode);
 		EnemySignals.checkEnemies.add (onCheck);
 		EnemySignals.destroyEnemy.add (onDestroy);
+		EnemySignals.enableSignals.add(enableSignals);//transfer to diff functions
+		EnemySignals.disableSignals.add(DisableSignals);
 	}
 	
-	private void removeSignals(){
+	public void removeSignals(){
 		EnemySignals.enemyRelease.remove (onEnemyRelease);
 		EnemySignals.explodeSignal.remove (onExplode);
 		EnemySignals.checkEnemies.remove (onCheck);
 		EnemySignals.destroyEnemy.remove (onDestroy);
+		EnemySignals.enableSignals.remove (enableSignals);
+		EnemySignals.disableSignals.remove (DisableSignals);
 	}
 	
 	private void onEnemyRelease(){
@@ -57,6 +61,16 @@ public class EnemyController : MonoBehaviour {
 		
 		_enemyProxy = new EnemyProxy();
 		_enemyProxy.init();
+	}
+	
+	public void enableSignals(){
+	Debug.Log ("Enemy Signal Enabled");
+	addSignals ();	
+	}
+	
+	public void DisableSignals(){
+	Debug.Log ("Enemy Signal Disabled");
+	removeSignals ();
 	}
 	
 	public void destroy(){

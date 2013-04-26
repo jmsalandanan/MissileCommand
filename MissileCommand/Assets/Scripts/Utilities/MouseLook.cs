@@ -68,6 +68,5 @@ public class MouseLook : MonoBehaviour {
 	GUI.Label(new Rect(550,10,100,100),EnemyView.score.ToString ());
 	GUI.Label(new Rect(10,250,100,100),"Bullets:");
 	GUI.Label(new Rect(70,250,100,100),PlayerView.playerAmmo.ToString());
- }
-	
+ }	
 }

@@ -4,16 +4,7 @@ using System.Collections.Generic;
 
 public class EnemyView : MonoBehaviour {
 	//public Rigidbody _enemy;
-	private GameObject _bomb;
-	private GameObject _bomb2;
-	private GameObject _bomb3;
-	private GameObject _bomb4;
-	private GameObject _bomb5;
-	private GameObject _explosion;
-	private GameObject _explosion2;
-	private GameObject _explosion3;
-	private GameObject _explosion4;
-	private GameObject _explosion5;
+	
 	public Vector3 randSpawnPoint;
 	private RaycastHit _enemyLine;
 	private int x;
@@ -26,6 +17,7 @@ public class EnemyView : MonoBehaviour {
 	private float delay = 0;
 	private int ENEMY_COUNT = 5;
 	private int EXPLOSION_COUNT = 5;
+	
  
 
 	void Start () {
@@ -34,6 +26,7 @@ public class EnemyView : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(!PlayerView.paused){
 		if(_units!=null)
 		EnemySignals.checkEnemies.dispatch();
 		
@@ -45,13 +38,7 @@ public class EnemyView : MonoBehaviour {
 			{
 				x = 0;
 			nextWaveCounter = 0;
-				/*
-			_explosion.SetActive(false);
-			_explosion2.SetActive(false);
-			_explosion3.SetActive(false);
-			_explosion4.SetActive(false);
-			_explosion5.SetActive(false);	*/
-				delay = 0;
+			delay = 0;
 			}		
 		}		
 
@@ -59,25 +46,27 @@ public class EnemyView : MonoBehaviour {
 		{
 			EnemySignals.enemyRelease.dispatch();
 		}
+		}
 		
 	}
 		
 	public void init(){
 		//Initializations for bomb and explosions.
 		for(int bmbCtr = 0; bmbCtr<ENEMY_COUNT; bmbCtr++){
-		Bomb _bomb = new Bomb();
-		_units.Add (_bomb.init());
-		_units[bmbCtr].name = "bomb"+bmbCtr;
+			Bomb _bomb = new Bomb();
+			_units.Add (_bomb.init());
+			_units[bmbCtr].name = "bomb"+bmbCtr;
 		}
 		
 		for(int explosionCtr = 0; explosionCtr<EXPLOSION_COUNT; explosionCtr++){
-		Explosion _explosion = new Explosion();
-		_explosions.Add(_explosion.init());
-		_explosions[explosionCtr].particleEmitter.emit = false;
+			Explosion _explosion = new Explosion();
+			_explosions.Add(_explosion.init());
+			_explosions[explosionCtr].particleEmitter.emit = false;
 		}
 		
 		x=0; 
 		nextWaveCounter = 0;
+		score = 0;
 	}
 
 	public void dropEnemy(Vector3 position){
@@ -89,17 +78,16 @@ public class EnemyView : MonoBehaviour {
 		
 public void checkConditions()
 {
-	foreach(GameObject _bombIns in _units)
-		{
-		if(_bombIns!=null)
-			{			
-			if(_bombIns.transform.position.y<=2.0f&&_bombIns.activeSelf){	
-						_bombIns.SetActive(false);
-						explodeAnimation(_bombIns.transform.position);
+		
+			for(int bmbCtr = 0; bmbCtr < ENEMY_COUNT; bmbCtr++){
+				if(_units[bmbCtr]!=null){			
+					if(_units[bmbCtr].transform.position.y<=2.0f&&_units[bmbCtr].activeSelf){	
+						_units[bmbCtr].SetActive(false);
+						explodeAnimation(_units[bmbCtr].transform.position);
 						Vector3 rayDirection = transform.TransformDirection(Vector3.down);		
-						if(Physics.Raycast(_bombIns.transform.position,rayDirection,out _enemyLine,5f)){				
+						if(Physics.Raycast(_units[bmbCtr].transform.position,rayDirection,out _enemyLine,5f)){				
 						if(_enemyLine.collider.gameObject.CompareTag("base")){
-           		 	 	Debug.DrawLine(_bombIns.transform.position, _enemyLine.point, Color.red);
+           		 	 	Debug.DrawLine(_units[bmbCtr].transform.position, _enemyLine.point, Color.red);
 						enemyCollision1 = _enemyLine.collider;
 						Debug.Log ("Enemy hits something");
 						Debug.Log (enemyCollision1.name);
@@ -107,21 +95,19 @@ public void checkConditions()
 						}
 					}				
 				}
-			if(_bombIns.activeSelf)
-				{
-					_bombIns.transform.Translate(0,0.05f,0);
-				}	
+				if(_units[bmbCtr].activeSelf){
+					_units[bmbCtr].transform.Translate(0,0.05f,0);
+				}
 			}
 		}
 }	
 	public void enemyHit(string name)
 	{
-		foreach(GameObject _bombIns in _units)
-		{
-			if(_bombIns.name == PlayerView.collider1.name)
+		for(int bmbCtr = 0; bmbCtr < ENEMY_COUNT; bmbCtr++){
+			if(_units[bmbCtr].name == PlayerView.collider1.name)
 			{
-				explodeAnimation(_bombIns.transform.position);
-				_bombIns.SetActive(false);
+				explodeAnimation(_units[bmbCtr].transform.position);
+				_units[bmbCtr].SetActive(false);
 
 				score +=10;
 			}
@@ -130,15 +116,13 @@ public void checkConditions()
 	
 	public void explodeAnimation(Vector3 position)
 	{
-		foreach(GameObject _explosionIns in _explosions)
-					{			
-						//if(!_explosionIns.activeSelf)
-						//{	
-							_explosionIns.transform.position = position;
-							_explosionIns.particleEmitter.Emit(100);							
+		for(int explosionCtr = 0; explosionCtr < EXPLOSION_COUNT; explosionCtr++){			
+							_explosions[explosionCtr].transform.position = position;
+							_explosions[explosionCtr].particleEmitter.Emit(100);							
 							nextWaveCounter++;
 							break;
-						//}
 					}	
 	}
+	
+	
 }

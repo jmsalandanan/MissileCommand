@@ -14,7 +14,6 @@ public class PlayerMediator : MonoBehaviour {
 	
 	}
 	public void init(){
-		Debug.Log ("Mediator");
 		_playerView = gameObject.AddComponent<PlayerView>();
 		_playerView.init();
 	}
@@ -28,6 +27,10 @@ public class PlayerMediator : MonoBehaviour {
 	
 	public void baseDestroyed(){
 		_playerView.deactivateBase();	
+	}
+	
+		public void onResumeClicked(){
+		PlayerView.paused = _playerView.togglePause();
 	}
 	
 

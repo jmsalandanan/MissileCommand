@@ -13,7 +13,6 @@ public class EnemyView : MonoBehaviour {
  	private List<GameObject> _units = new List<GameObject>();
 	private List<GameObject> _explosions = new List<GameObject>();
 	 public static Collider enemyCollision1 = new Collider();
-	 public static int score= 0;
 	private float delay = 0;
 	private int ENEMY_COUNT = 5;
 	private int EXPLOSION_COUNT = 5;
@@ -66,7 +65,7 @@ public class EnemyView : MonoBehaviour {
 		
 		x=0; 
 		nextWaveCounter = 0;
-		score = 0;
+
 	}
 
 	public void dropEnemy(Vector3 position){
@@ -109,7 +108,7 @@ public void checkConditions()
 				explodeAnimation(_units[bmbCtr].transform.position);
 				_units[bmbCtr].SetActive(false);
 
-				score +=10;
+
 			}
 		}
 	}

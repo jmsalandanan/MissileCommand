@@ -10,6 +10,7 @@ public class MainApplication : MonoBehaviour {
 	public GameObject MainPanel;  
 	public GameObject HowToPanel;
 	public GameObject pausePanel;
+	public GameObject gameOverPanel;
     public GameObject buttonStart;
 	public GameObject buttonHowTo;
 	public GameObject buttonBack;
@@ -17,6 +18,7 @@ public class MainApplication : MonoBehaviour {
 	public GameObject buttonReturntoMain;
 	public Camera camera1;
 	public Camera camera2;
+	public Camera camera3;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +27,7 @@ public class MainApplication : MonoBehaviour {
 		addSignals();
 		camera1.enabled = true;
 		camera2.enabled = false;
+		camera3.enabled = false;
 		buttonResume.SetActive(false);
 		buttonReturntoMain.SetActive(false);
 		GameObject.Find ("Player").GetComponent<MouseLook>().enabled =false;
@@ -60,11 +63,15 @@ public class MainApplication : MonoBehaviour {
 	Debug.Log ("Game Enters");
 	NGUITools.SetActive (MainPanel,false);
 	NGUITools.SetActive (HowToPanel,false);
+	NGUITools.SetActive (gameOverPanel,false);
+	NGUITools.SetActive (pausePanel,false);
 	buttonBack.SetActive(false);
 	buttonHowTo.SetActive (false);
 	buttonStart.SetActive(false);
-	camera1.enabled = !camera1.enabled;
-	camera2.enabled = !camera2.enabled;
+		
+	camera1.enabled = false;
+	camera2.enabled = true;
+	camera3.enabled = false;
 	GameObject.Find ("Player").GetComponent<MouseLook>().enabled = true;
 	_enemyController = gameObject.AddComponent<EnemyController>();	
 	_enemyController.init();
@@ -75,6 +82,7 @@ public class MainApplication : MonoBehaviour {
 		private void addSignals(){
 		PlayerSignals.showPauseMenu.add (togglePauseMenu);
 		PlayerSignals.onPause.add (onPause);
+		PlayerSignals.onGameOver.add (showGameOverScreen);
 	}
 	
 	void OnButtonStartClicked(GameObject go){
@@ -101,14 +109,16 @@ public class MainApplication : MonoBehaviour {
 		Debug.Log ("Main Menu Clicked");
 		_playerController.onMainMenuClicked();
 		_isMainMenu = true;
-		camera1.enabled = !camera1.enabled;
-		camera2.enabled = !camera2.enabled;
+		camera1.enabled = true;
+		camera2.enabled = false;
+		camera3.enabled = false;
 		buttonHowTo.SetActive (true);
 		buttonStart.SetActive(true);
 		_playerController.destroy();
 		_enemyController.destroy();
 		DestroyImmediate (_enemyController,true);
 		GameObject.Find ("Player").GetComponent<MouseLook>().enabled = false;
+		NGUITools.SetActive(pausePanel,false);
 		
 	}
 	void onPause(){
@@ -120,8 +130,12 @@ public class MainApplication : MonoBehaviour {
 		NGUITools.SetActive(pausePanel,!pausePanel.activeSelf);
 		buttonResume.SetActive(true);
 		buttonReturntoMain.SetActive(true);
-		//buttonReturntoMain.SetActive(!buttonReturntoMain.activeSelf);
 	}
 	
-
+	public void showGameOverScreen(){
+		NGUITools.SetActive (gameOverPanel,true);
+		camera2.enabled = false;
+		GameObject.Find ("Player").GetComponent<MouseLook>().enabled = false;
+		camera3.enabled = true;
+	}
 }

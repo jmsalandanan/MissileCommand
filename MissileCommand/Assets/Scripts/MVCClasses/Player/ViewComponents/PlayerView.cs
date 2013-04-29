@@ -24,6 +24,7 @@ public class PlayerView:MonoBehaviour {
 	private GameObject _base5;
 	public static bool paused = false;
 	public static int playerLife;
+	public static int score= 0;
 	private List <GameObject> _baseList = new List<GameObject>();
 	public Transform cameraTransform = Camera.main.transform;
 	public static int playerAmmo;
@@ -58,6 +59,7 @@ public class PlayerView:MonoBehaviour {
 		paused = false;
 		playerLife = 4;
 		playerAmmo = 15;
+		score = 0;
 		
 		for(int x=0;x<4;x++){
 			_basePosition = new Vector3(_basePositionX,0f,-2f);
@@ -75,8 +77,11 @@ public class PlayerView:MonoBehaviour {
 				PlayerSignals.fireSignal.dispatch();
 			}
 		
-			if(playerLife <=0){
-				Debug.Log ("Game Over");	
+			if(playerLife <=0||playerAmmo==0){
+				Debug.Log ("Game Over");
+				PlayerSignals.onGameOver.dispatch();
+				UILabel scoreLabel = GameObject.Find("ScoreLabel").GetComponent<UILabel>();
+				scoreLabel.text = score.ToString();
 			}
 			
 		  	if(Input.GetKey(KeyCode.P)){
@@ -95,7 +100,9 @@ public class PlayerView:MonoBehaviour {
 				Debug.Log (hit);
 				localHit = transform.InverseTransformPoint(hit.point);
 				Debug.Log (localHit);
+				score +=10;
 				EnemySignals.destroyEnemy.dispatch();
+				
 			}
 			
 		_playerWeapon.animation.Play("shoot");

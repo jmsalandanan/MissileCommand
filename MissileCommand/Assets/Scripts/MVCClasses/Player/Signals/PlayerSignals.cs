@@ -10,4 +10,5 @@ public class PlayerSignals {
 	public static Signal disableSignals = new Signal();
 	public static Signal showPauseMenu = new Signal();
 	public static Signal onPause = new Signal();
+	public static Signal onGameOver = new Signal();
 }

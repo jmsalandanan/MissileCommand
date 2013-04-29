@@ -83,7 +83,6 @@ public class EnemyController : MonoBehaviour {
 		_enemyMediator.onDestroy();
 		Destroy (_enemyMediator);
 		removeSignals ();
-
 	}
 }
 

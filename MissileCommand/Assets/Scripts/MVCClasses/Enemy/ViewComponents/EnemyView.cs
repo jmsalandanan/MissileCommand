@@ -124,5 +124,16 @@ public void checkConditions()
 					}	
 	}
 	
+		public void onDestroy(){
+		for(int bmbCtr = 0; bmbCtr<ENEMY_COUNT; bmbCtr++){
+			Destroy(_units[bmbCtr]);
+		}
+		
+		for(int explosionCtr = 0; explosionCtr<EXPLOSION_COUNT; explosionCtr++){
+			Destroy (_explosions[explosionCtr]);
+		}
+				Destroy(this);
+	}
+	
 	
 }

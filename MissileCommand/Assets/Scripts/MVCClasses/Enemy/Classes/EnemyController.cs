@@ -65,16 +65,25 @@ public class EnemyController : MonoBehaviour {
 	
 	public void enableSignals(){
 	Debug.Log ("Enemy Signal Enabled");
-	addSignals ();	
+	EnemySignals.enemyRelease.add(onEnemyRelease);
+	EnemySignals.explodeSignal.add(onExplode);
+	EnemySignals.checkEnemies.add(onCheck);
+	EnemySignals.destroyEnemy.add(onDestroy);
 	}
 	
 	public void DisableSignals(){
 	Debug.Log ("Enemy Signal Disabled");
-	removeSignals ();
+	EnemySignals.enemyRelease.remove(onEnemyRelease);
+	EnemySignals.explodeSignal.remove(onExplode);
+	EnemySignals.checkEnemies.remove(onCheck);
+	EnemySignals.destroyEnemy.remove(onDestroy);
 	}
 	
 	public void destroy(){
-		removeSignals();
+		_enemyMediator.onDestroy();
+		Destroy (_enemyMediator);
+		removeSignals ();
+
 	}
 }
 

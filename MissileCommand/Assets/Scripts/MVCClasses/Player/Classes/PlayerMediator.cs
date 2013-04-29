@@ -33,5 +33,11 @@ public class PlayerMediator : MonoBehaviour {
 		PlayerView.paused = _playerView.togglePause();
 	}
 	
-
+	public void onMainMenuClicked(){
+		_playerView.onMainMenuClicked();	
+	}
+	
+	public void onDestroy(){
+		_playerView.onDestroy();	
+	}
 }

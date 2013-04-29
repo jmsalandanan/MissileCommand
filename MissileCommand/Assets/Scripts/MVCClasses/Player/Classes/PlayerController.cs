@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 		PlayerSignals.destroyBase.add (onBaseDestroyed);
 		PlayerSignals.enableSignals.add(enableSignals);
 		PlayerSignals.disableSignals.add(disableSignals);
+		//PlayerSignals.onPause.add ();
 	}
 	
 	private void removeSignals(){
@@ -48,12 +49,16 @@ public class PlayerController : MonoBehaviour {
 	
 	public void enableSignals(){
 	Debug.Log ("Player Signal Enabled");
-	addSignals ();	
+	PlayerSignals.fireSignal.add (onPlayerFire);
+	PlayerSignals.passCollider.add (onEnemyDestroyed);
+	PlayerSignals.destroyBase.add (onBaseDestroyed);	
 	}
 	
 	public void disableSignals(){
 	Debug.Log ("Player Signal Disabled");
-	removeSignals ();
+	PlayerSignals.fireSignal.remove(onPlayerFire);
+	PlayerSignals.passCollider.remove (onPlayerFire);
+	PlayerSignals.destroyBase.remove (onBaseDestroyed);
 	}
 	
 	private void initControllers(){
@@ -68,7 +73,13 @@ public class PlayerController : MonoBehaviour {
 		_playerMediator.onResumeClicked();	
 	}
 	
+	public void onMainMenuClicked(){
+		_playerMediator.onMainMenuClicked();	
+	}
+	
 	public void destroy(){
 		removeSignals();
+		_playerMediator.onDestroy();
+		Destroy (_playerMediator);
 	}
 }

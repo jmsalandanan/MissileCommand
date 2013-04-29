@@ -23,13 +23,13 @@ public class PlayerView:MonoBehaviour {
 	private GameObject _playerWeaponFire;
 	private GameObject _base5;
 	public static bool paused = false;
-	public static int playerLife =4;
+	public static int playerLife;
 	private List <GameObject> _baseList = new List<GameObject>();
 	public Transform cameraTransform = Camera.main.transform;
-	public static int playerAmmo = 15;
+	public static int playerAmmo;
     // Use this for initialization
     void Start () {
-		 //point = (Camera) GameObject.FindObjectOfType(typeof(Camera));
+		
     }
   
 	public void init(){
@@ -54,6 +54,11 @@ public class PlayerView:MonoBehaviour {
 		_playerWeapon = GameObject.Find("bazooka");
 		_playerWeaponFire = GameObject.Find ("Flame");
 		_playerWeaponFire.particleEmitter.emit = false;
+		
+		paused = false;
+		playerLife = 4;
+		playerAmmo = 15;
+		
 		for(int x=0;x<4;x++){
 			_basePosition = new Vector3(_basePositionX,0f,-2f);
 			_baseList[x].transform.position= _basePosition;
@@ -65,23 +70,18 @@ public class PlayerView:MonoBehaviour {
     void Update () {
      
 		if(!paused){
-        // Find the centre of the Screen
-        vec.x = (float)Screen.width / 2;
-        vec.y = (float)Screen.height / 2;
-        vec.z = 0;
-
-		if(Input.GetButtonDown("Fire1")){
-			ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-			PlayerSignals.fireSignal.dispatch();
-		}
+			if(Input.GetButtonDown("Fire1")){
+				ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+				PlayerSignals.fireSignal.dispatch();
+			}
 		
-		if(playerLife <=0){
-			Debug.Log ("Game Over");	
-		}
-		  if(Input.GetKey(KeyCode.P))
-         //paused = togglePause();
+			if(playerLife <=0){
+				Debug.Log ("Game Over");	
+			}
+			
+		  	if(Input.GetKey(KeyCode.P)){
 				PlayerSignals.onPause.dispatch();
-
+		  	}
 		}
 
 	}
@@ -97,6 +97,7 @@ public class PlayerView:MonoBehaviour {
 				Debug.Log (localHit);
 				EnemySignals.destroyEnemy.dispatch();
 			}
+			
 		_playerWeapon.animation.Play("shoot");
 		_playerWeaponFire.particleEmitter.Emit(1);
 		playerAmmo -=1;
@@ -108,8 +109,7 @@ public class PlayerView:MonoBehaviour {
 	}
 	
 	public void deactivateBase(){
-		foreach(GameObject _baseIns in _baseList)
-		{
+		foreach(GameObject _baseIns in _baseList){
 			if(_baseIns.name == EnemyView.enemyCollision1.name){
 				_baseIns.SetActive(false);
 				playerLife -= 1;
@@ -122,7 +122,6 @@ public class PlayerView:MonoBehaviour {
 	 
     public bool togglePause(){
        if(Time.timeScale == 0f){
-
 		PlayerSignals.enableSignals.dispatch();
 		EnemySignals.enableSignals.dispatch();
 		PlayerSignals.showPauseMenu.dispatch();
@@ -141,5 +140,22 @@ public class PlayerView:MonoBehaviour {
          return(true);    
        }
     }
+	
+	public void onMainMenuClicked(){
+		//togglePause ();
+		PlayerSignals.showPauseMenu.dispatch ();
+		PlayerSignals.disableSignals.dispatch();
+		EnemySignals.disableSignals.dispatch();
+				Time.timeScale = 1f;
+	}
+	
+	public void onDestroy(){
+		for(int x=0;x<4;x++){
+			Destroy(_baseList[x]);
+
+		}
+		Destroy(this);
+			
+	}
 	
 }

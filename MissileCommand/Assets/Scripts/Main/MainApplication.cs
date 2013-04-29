@@ -7,9 +7,9 @@ public class MainApplication : MonoBehaviour {
 	private bool _isGameView = false;
 	private bool _isHowTo = false;
 	public bool _isMainMenu = true;
-	public UIPanel MainPanel;  
-	public UIPanel HowToPanel;
-	public UIPanel pausePanel;
+	public GameObject MainPanel;  
+	public GameObject HowToPanel;
+	public GameObject pausePanel;
     public GameObject buttonStart;
 	public GameObject buttonHowTo;
 	public GameObject buttonBack;
@@ -20,8 +20,8 @@ public class MainApplication : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		HowToPanel.enabled = false;
-		pausePanel.enabled = false;
+		NGUITools.SetActive (HowToPanel,false);
+		NGUITools.SetActive (pausePanel,false);
 		addSignals();
 		camera1.enabled = true;
 		camera2.enabled = false;
@@ -42,23 +42,24 @@ public class MainApplication : MonoBehaviour {
 		}	
 		
 		if(_isHowTo){
-		HowToPanel.enabled = true;
-		MainPanel.enabled = false;
+		NGUITools.SetActive(MainPanel,false);
+		NGUITools.SetActive (HowToPanel.gameObject,true);
+		
 		_isHowTo = false;
 		}
 		
 		if(_isMainMenu)
 		{
-		HowToPanel.enabled = false;
-		MainPanel.enabled = true;
+		NGUITools.SetActive(MainPanel,true);
+		NGUITools.SetActive (HowToPanel.gameObject,false);
 		_isMainMenu = false;
 		}
 	}
 	
 	private void startApplication(){	
 	Debug.Log ("Game Enters");
-	MainPanel.enabled = false;
-	HowToPanel.enabled = false;
+	NGUITools.SetActive (MainPanel,false);
+	NGUITools.SetActive (HowToPanel,false);
 	buttonBack.SetActive(false);
 	buttonHowTo.SetActive (false);
 	buttonStart.SetActive(false);
@@ -71,7 +72,6 @@ public class MainApplication : MonoBehaviour {
 	_playerController.init();	
 	_isGameView=false;	
 	}
-	
 		private void addSignals(){
 		PlayerSignals.showPauseMenu.add (togglePauseMenu);
 		PlayerSignals.onPause.add (onPause);
@@ -95,18 +95,32 @@ public class MainApplication : MonoBehaviour {
 	void OnResumeClick(GameObject go){
 		Debug.Log ("resume clicked");
 		_playerController.onResumeClicked();
-		//pausePanel.enabled = false;
+	}
+	
+	void OnMainMenuClick(GameObject go){
+		Debug.Log ("Main Menu Clicked");
+		_playerController.onMainMenuClicked();
+		_isMainMenu = true;
+		camera1.enabled = !camera1.enabled;
+		camera2.enabled = !camera2.enabled;
+		buttonHowTo.SetActive (true);
+		buttonStart.SetActive(true);
+		_playerController.destroy();
+		_enemyController.destroy();
+		DestroyImmediate (_enemyController,true);
+		GameObject.Find ("Player").GetComponent<MouseLook>().enabled = false;
+		
 	}
 	void onPause(){
 		_playerController.onResumeClicked();	
 	}
 	
-//Change	
 	
 	public void togglePauseMenu(){
-		pausePanel.enabled = !pausePanel.enabled;
-		buttonResume.SetActive(!buttonResume.activeSelf);
-		buttonReturntoMain.SetActive(!buttonReturntoMain.activeSelf);
+		NGUITools.SetActive(pausePanel,!pausePanel.activeSelf);
+		buttonResume.SetActive(true);
+		buttonReturntoMain.SetActive(true);
+		//buttonReturntoMain.SetActive(!buttonReturntoMain.activeSelf);
 	}
 	
 

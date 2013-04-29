@@ -29,4 +29,7 @@ public class EnemyMediator : MonoBehaviour {
 	public void enemyHit(string name){
 		_enemyView.enemyHit(name);
 	}
+	public void onDestroy(){
+		_enemyView.onDestroy();	
+	}
 }

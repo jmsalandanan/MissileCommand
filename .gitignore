@@ -61,3 +61,5 @@ unitysrc/Assembly-Boo.booproj
 .DS_Store
 
 *.userprefs
+/Temp
+/Library

@@ -3,76 +3,89 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EnemyView : MonoBehaviour {
-	//public Rigidbody _enemy;
 	
 	public Vector3 randSpawnPoint;
 	private RaycastHit _enemyLine;
-	private int x;
-	private int randSpawnTrigger;
-	private int nextWaveCounter;
+	private int _x;
+	private int _randSpawnTrigger;
+	private int _nextWaveCounter;
  	private List<GameObject> _units = new List<GameObject>();
 	private List<GameObject> _explosions = new List<GameObject>();
 	 public static Collider enemyCollision1 = new Collider();
-	private float delay = 0;
+	private float _delay = 0;
 	private int ENEMY_COUNT = 5;
 	private int EXPLOSION_COUNT = 5;
+	private int PREV_ENEMY_COUNT;
+	public static int levelCount;
+	private int _numberOfEnemies;
+	private AudioSource _explosionAudio;
 	
  
 
-	void Start () {
-
+	void Start () {	
+		_x=0; 
+		_nextWaveCounter = 0;
+		levelCount = 1;
+		PREV_ENEMY_COUNT = 0;
+		_numberOfEnemies = 5;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(!PlayerView.paused){
-		if(_units!=null)
-		EnemySignals.checkEnemies.dispatch();
-		
-		randSpawnTrigger = Random.Range (0,10);
-		if(nextWaveCounter == 5)
-		{
-			delay +=Time.deltaTime;
-			if(delay>0.1)
-			{
-				x = 0;
-			nextWaveCounter = 0;
-			delay = 0;
-			}		
-		}		
-
-		if(randSpawnTrigger == 5&&x<5)
-		{
-			EnemySignals.enemyRelease.dispatch();
-		}
+			if(_units!=null)
+				EnemySignals.checkEnemies.dispatch();
+			
+			if(_nextWaveCounter == _numberOfEnemies){					
+				_x = 0;
+				_nextWaveCounter = 0;
+				_delay = 0;
+				levelCount++;
+				PlayerView.playerAmmo +=5;
+				Debug.Log (levelCount);
+				PREV_ENEMY_COUNT = ENEMY_COUNT;
+				ENEMY_COUNT +=2;
+				EXPLOSION_COUNT +=2;
+				_numberOfEnemies +=2;
+				init ();
+							
+			}
+				_delay +=Time.deltaTime;
+			if(_delay>2){
+				if(_x<_numberOfEnemies){
+					EnemySignals.enemyRelease.dispatch();
+					_delay = 0;
+			}
+				}
 		}
 		
 	}
 		
 	public void init(){
 		//Initializations for bomb and explosions.
-		for(int bmbCtr = 0; bmbCtr<ENEMY_COUNT; bmbCtr++){
+		for(int bmbCtr = PREV_ENEMY_COUNT; bmbCtr<ENEMY_COUNT; bmbCtr++){
 			Bomb _bomb = new Bomb();
 			_units.Add (_bomb.init());
 			_units[bmbCtr].name = "bomb"+bmbCtr;
 		}
 		
-		for(int explosionCtr = 0; explosionCtr<EXPLOSION_COUNT; explosionCtr++){
+		for(int explosionCtr = PREV_ENEMY_COUNT; explosionCtr<EXPLOSION_COUNT; explosionCtr++){
 			Explosion _explosion = new Explosion();
 			_explosions.Add(_explosion.init());
 			_explosions[explosionCtr].particleEmitter.emit = false;
 		}
 		
-		x=0; 
-		nextWaveCounter = 0;
+		_explosionAudio = new AudioSource();
+		_explosionAudio = gameObject.AddComponent<AudioSource>();
+		_explosionAudio.clip = Resources.Load("Grenade") as AudioClip;
 
 	}
 
 	public void dropEnemy(Vector3 position){
-	randSpawnPoint = new Vector3(Random.Range (-9.5f,8.0f),20,-2f);
-	_units[x].transform.position = randSpawnPoint;
-	_units[x].SetActive(true);
-	x=x+1;
+	randSpawnPoint = new Vector3(Random.Range (-9.5f,8.0f),20,-3f);
+	_units[_x].transform.position = randSpawnPoint;
+	_units[_x].SetActive(true);
+	_x=_x+1;
 	}	
 		
 public void checkConditions()
@@ -95,7 +108,7 @@ public void checkConditions()
 					}				
 				}
 				if(_units[bmbCtr].activeSelf){
-					_units[bmbCtr].transform.Translate(0,0.05f,0);
+					_units[bmbCtr].transform.Translate(0,0.01f * levelCount,0);
 				}
 			}
 		}
@@ -107,7 +120,7 @@ public void checkConditions()
 			{
 				explodeAnimation(_units[bmbCtr].transform.position);
 				_units[bmbCtr].SetActive(false);
-
+				PlayerView.score +=10;
 
 			}
 		}
@@ -118,7 +131,8 @@ public void checkConditions()
 		for(int explosionCtr = 0; explosionCtr < EXPLOSION_COUNT; explosionCtr++){			
 							_explosions[explosionCtr].transform.position = position;
 							_explosions[explosionCtr].particleEmitter.Emit(100);							
-							nextWaveCounter++;
+							_nextWaveCounter++;
+							_explosionAudio.Play();
 							break;
 					}	
 	}
@@ -131,7 +145,7 @@ public void checkConditions()
 		for(int explosionCtr = 0; explosionCtr<EXPLOSION_COUNT; explosionCtr++){
 			Destroy (_explosions[explosionCtr]);
 		}
-				Destroy(this);
+			Destroy(this);
 	}
 	
 	

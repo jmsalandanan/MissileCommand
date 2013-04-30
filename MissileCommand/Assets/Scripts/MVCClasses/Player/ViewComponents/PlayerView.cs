@@ -8,6 +8,7 @@ public class PlayerView:MonoBehaviour {
     public static Collider collider1 = new Collider();
     private Ray ray;
 	private EnemyView _enemyView;
+	private SoundManager _soundManager;
     private Vector3 vec;
     private LayerMask layerMask;
 	public static Vector3 localHit;
@@ -28,6 +29,10 @@ public class PlayerView:MonoBehaviour {
 	private List <GameObject> _baseList = new List<GameObject>();
 	public Transform cameraTransform = Camera.main.transform;
 	public static int playerAmmo;
+	 private AudioSource _shootAudio;  
+	
+	
+
     // Use this for initialization
     void Start () {
 		
@@ -60,7 +65,10 @@ public class PlayerView:MonoBehaviour {
 		playerLife = 4;
 		playerAmmo = 15;
 		score = 0;
-		
+		_shootAudio = new AudioSource();
+		_shootAudio = gameObject.AddComponent<AudioSource>();
+
+		_shootAudio.clip = Resources.Load("Cannon") as AudioClip;
 		for(int x=0;x<4;x++){
 			_basePosition = new Vector3(_basePositionX,0f,-2f);
 			_baseList[x].transform.position= _basePosition;
@@ -75,6 +83,7 @@ public class PlayerView:MonoBehaviour {
 			if(Input.GetButtonDown("Fire1")){
 				ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 				PlayerSignals.fireSignal.dispatch();
+				_shootAudio.Play();
 			}
 		
 			if(playerLife <=0||playerAmmo==0){
@@ -87,6 +96,7 @@ public class PlayerView:MonoBehaviour {
 		  	if(Input.GetKey(KeyCode.P)){
 				PlayerSignals.onPause.dispatch();
 		  	}
+			
 		}
 
 	}
@@ -100,11 +110,9 @@ public class PlayerView:MonoBehaviour {
 				Debug.Log (hit);
 				localHit = transform.InverseTransformPoint(hit.point);
 				Debug.Log (localHit);
-				score +=10;
-				EnemySignals.destroyEnemy.dispatch();
-				
+				EnemySignals.destroyEnemy.dispatch();		
 			}
-			
+
 		_playerWeapon.animation.Play("shoot");
 		_playerWeaponFire.particleEmitter.Emit(1);
 		playerAmmo -=1;

@@ -24,6 +24,7 @@ public class MainApplication : MonoBehaviour {
 	void Start () {
 		NGUITools.SetActive (HowToPanel,false);
 		NGUITools.SetActive (pausePanel,false);
+		NGUITools.SetActive (gameOverPanel,false);
 		addSignals();
 		camera1.enabled = true;
 		camera2.enabled = false;
@@ -119,6 +120,7 @@ public class MainApplication : MonoBehaviour {
 		DestroyImmediate (_enemyController,true);
 		GameObject.Find ("Player").GetComponent<MouseLook>().enabled = false;
 		NGUITools.SetActive(pausePanel,false);
+		NGUITools.SetActive(gameOverPanel,false);
 		
 	}
 	void onPause(){
@@ -134,7 +136,7 @@ public class MainApplication : MonoBehaviour {
 	
 	public void showGameOverScreen(){
 		NGUITools.SetActive (gameOverPanel,true);
-		camera2.enabled = false;
+		//camera2.enabled = false;
 		GameObject.Find ("Player").GetComponent<MouseLook>().enabled = false;
 		camera3.enabled = true;
 	}

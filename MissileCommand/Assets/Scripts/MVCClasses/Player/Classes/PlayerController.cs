@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour {
 		PlayerSignals.destroyBase.add (onBaseDestroyed);
 		PlayerSignals.enableSignals.add(enableSignals);
 		PlayerSignals.disableSignals.add(disableSignals);
-		//PlayerSignals.onPause.add ();
 	}
 	
 	private void removeSignals(){

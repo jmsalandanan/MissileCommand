@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_GAMECENTER;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_0;UNITY_4_1;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_0;UNITY_4_1;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -44,55 +44,42 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\autoDestroy.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\bulletHoleProperty.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\externalCamera.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\fadeParticles.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\flyingSpark.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\game.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\health.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\laserSight\laserDust.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\laserSight\laserLine.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\laserSight\laserPoint.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\laserSight\laserSight.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\particleAutoDestroy.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\platform.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\shadow.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\spark.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\Misc\triggerChildrenCollider.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\guns\bulletCase.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\guns\bulletCaseGenerator.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\guns\bulletHole.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\guns\bulletHoleHeat.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\guns\bulletTrace.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\guns\bulletTraceGenerator.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\guns\dustCloud.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\guns\dustCloudGenerator.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\guns\gun.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\guns\gunSelector.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\guns\muzzleFlash.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\guns\muzzleFlashGenerator.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\ik\ikArmController.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\ik\inverseKinematics.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\sentryGun\sentryGun.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\sentryGun\spinningTurret.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\crosshair.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\crouchController.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\skeletonToCharacter.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\smoothWorldPosition.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\soldierAim.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\soldierAnimation.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\soldierCamera.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\soldierLOD.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\soldierMovement.js" />
-     <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\weaponController.js" />
+     <Compile Include="Assets\Detonator Explosion Framework\Sample Supporting Emitters\Detonator Spray Helper.js" />
+     <Compile Include="Assets\Detonator Explosion Framework\TestScene\DetonatorTest.js" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
+     <None Include="Assets\Library\NGUI\Examples\Models\Orc\Orc Skin.shader" />
+     <None Include="Assets\Library\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
+     <None Include="Assets\Library\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
+     <None Include="Assets\Library\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (AlphaClip) .shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Library\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
+     <None Include="Assets\Detonator Explosion Framework\Resources\Detonator\Textures\HeatDistort.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Transparent Colored (AlphaClip).shader" />
+     <None Include="Assets\Library\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
+     <None Include="Assets\Library\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
      <None Include="Assets\Turret\Shaders\AlphaTest_Complete.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
-     <None Include="Assets\Cartoon Soldier\Readme.txt" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (SoftClip).shader" />
+     <None Include="Assets\Library\NGUI\ReadMe - 2.1.4.txt" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Transparent Colored (HardClip).shader" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Transparent Colored Overlay.shader" />
+     <None Include="Assets\Library\NGUI\Examples\Other\English.txt" />
+     <None Include="Assets\Library\NGUI\Examples\Other\French.txt" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed).shader" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (HardClip).shader" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Additive Colored.shader" />
+     <None Include="Assets\Library\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
+     <None Include="Assets\Library\NGUI\Examples\Shaders\Refractive.shader" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Depth.shader" />
+     <None Include="Assets\Library\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
+     <None Include="Assets\Library\NGUI\Resources\Shaders\Unlit - Transparent Colored (SoftClip).shader" />
+     <None Include="Assets\Library\NGUI\Examples\Models\Orc Armor\Orc Armor.shader" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

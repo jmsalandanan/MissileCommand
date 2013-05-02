@@ -64,9 +64,12 @@ public class MouseLook : MonoBehaviour {
     GUI.Box(new Rect(Screen.width/2,Screen.height/2, 15, 15), "");
 	GUI.Label(new Rect(10,10,100,100),"Life:");
 	GUI.Label(new Rect(40,10,100,100),PlayerView.playerLife.ToString());
-	GUI.Label(new Rect(500,10,100,100),"Score:");
-	GUI.Label(new Rect(550,10,100,100),PlayerView.score.ToString ());
-	GUI.Label(new Rect(10,250,100,100),"Bullets:");
-	GUI.Label(new Rect(70,250,100,100),PlayerView.playerAmmo.ToString());
+	GUI.Label(new Rect(10,30,100,100),"Bullets:");
+	GUI.Label(new Rect(70,30,100,100),PlayerView.playerAmmo.ToString());
+	GUI.Label(new Rect(800,10,100,100),"Score:");
+	GUI.Label(new Rect(850,10,100,100),PlayerView.score.ToString ());
+	GUI.Label(new Rect(800,30,100,100),"Wave:");
+	GUI.Label(new Rect(850,30,100,100),EnemyView.levelCount.ToString());
+
  }	
 }

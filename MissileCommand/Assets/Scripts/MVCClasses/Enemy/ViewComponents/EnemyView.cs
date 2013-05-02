@@ -16,6 +16,8 @@ public class EnemyView : MonoBehaviour {
 	private int ENEMY_COUNT = 5;
 	private int EXPLOSION_COUNT = 5;
 	private int PREV_ENEMY_COUNT;
+	 public int[] results = new int[] {15, 1645, 135, 567};
+	private float[] _enemyXDropCoord = new float[] {-7.75f,-2.75f,2.25f,7.25f};
 	public static int levelCount;
 	private int _numberOfEnemies;
 	private AudioSource _explosionAudio;
@@ -41,11 +43,11 @@ public class EnemyView : MonoBehaviour {
 				_nextWaveCounter = 0;
 				_delay = 0;
 				levelCount++;
-				PlayerView.playerAmmo +=5;
+				PlayerView.playerAmmo +=10;
 				Debug.Log (levelCount);
 				PREV_ENEMY_COUNT = ENEMY_COUNT;
 				ENEMY_COUNT +=2;
-				EXPLOSION_COUNT +=2;
+				//EXPLOSION_COUNT +=2;
 				_numberOfEnemies +=2;
 				init ();
 							
@@ -67,6 +69,7 @@ public class EnemyView : MonoBehaviour {
 			Bomb _bomb = new Bomb();
 			_units.Add (_bomb.init());
 			_units[bmbCtr].name = "bomb"+bmbCtr;
+			_units[bmbCtr].SetActive(false );
 		}
 		
 		for(int explosionCtr = PREV_ENEMY_COUNT; explosionCtr<EXPLOSION_COUNT; explosionCtr++){
@@ -82,10 +85,17 @@ public class EnemyView : MonoBehaviour {
 	}
 
 	public void dropEnemy(Vector3 position){
-	randSpawnPoint = new Vector3(Random.Range (-9.5f,8.0f),20,-3f);
+	int rand = Random.Range (0,4);
+	randSpawnPoint = new Vector3(_enemyXDropCoord[rand],50,-3f);
 	_units[_x].transform.position = randSpawnPoint;
 	_units[_x].SetActive(true);
+	_units[_x].transform.FindChild("SmokeTrail").particleEmitter.transform.position = randSpawnPoint;
+	_units[_x].transform.FindChild("SmokeTrail").particleEmitter.emit = true;
+
+
+		
 	_x=_x+1;
+	
 	}	
 		
 public void checkConditions()
@@ -95,6 +105,8 @@ public void checkConditions()
 				if(_units[bmbCtr]!=null){			
 					if(_units[bmbCtr].transform.position.y<=2.0f&&_units[bmbCtr].activeSelf){	
 						_units[bmbCtr].SetActive(false);
+						_units[bmbCtr].transform.FindChild("SmokeTrail").particleEmitter.ClearParticles();
+						_units[bmbCtr].transform.FindChild("SmokeTrail").particleEmitter.emit=false;
 						explodeAnimation(_units[bmbCtr].transform.position);
 						Vector3 rayDirection = transform.TransformDirection(Vector3.down);		
 						if(Physics.Raycast(_units[bmbCtr].transform.position,rayDirection,out _enemyLine,5f)){				
@@ -108,7 +120,9 @@ public void checkConditions()
 					}				
 				}
 				if(_units[bmbCtr].activeSelf){
-					_units[bmbCtr].transform.Translate(0,0.01f * levelCount,0);
+					_units[bmbCtr].transform.Translate(0f,0.05f * levelCount,0);
+					_units[bmbCtr].transform.Rotate (0,10,0);
+
 				}
 			}
 		}
@@ -120,7 +134,9 @@ public void checkConditions()
 			{
 				explodeAnimation(_units[bmbCtr].transform.position);
 				_units[bmbCtr].SetActive(false);
-				PlayerView.score +=10;
+				PlayerView.score += (int) _units[bmbCtr].transform.position.y;
+				_units[bmbCtr].transform.FindChild("SmokeTrail").particleEmitter.emit=false;
+					_units[bmbCtr].transform.FindChild("SmokeTrail").particleEmitter.ClearParticles();
 
 			}
 		}

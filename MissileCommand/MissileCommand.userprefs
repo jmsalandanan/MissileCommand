@@ -1,14 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MVCClasses/Enemy/ViewComponents/EnemyView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Utilities/MouseLook.cs">
     <Files>
-      <File FileName="Assets/Scripts/MVCClasses/Player/ViewComponents/PlayerView.cs" Line="17" Column="33" />
+      <File FileName="Assets/Scripts/MVCClasses/Player/ViewComponents/PlayerView.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MVCClasses/Enemy/ViewComponents/EnemyView.cs" Line="94" Column="3" />
       <File FileName="Assets/Scripts/Utilities/SoundManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MVCClasses/Player/Signals/PlayerSignals.cs" Line="13" Column="49" />
+      <File FileName="Assets/Scripts/MVCClasses/Player/Signals/PlayerSignals.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MVCClasses/Enemy/Classes/Bomb.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Utilities/Signal/Signal.cs" Line="244" Column="1" />
-      <File FileName="Assets/Scripts/Utilities/MouseLook.cs" Line="69" Column="22" />
+      <File FileName="Assets/Scripts/Utilities/Signal/Signal.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Utilities/MouseLook.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -28,9 +28,7 @@
                   <Node name="Enemy" expanded="True">
                     <Node name="Classes" expanded="True" />
                     <Node name="Signals" expanded="True" />
-                    <Node name="ViewComponents" expanded="True">
-                      <Node name="EnemyView.cs" selected="True" />
-                    </Node>
+                    <Node name="ViewComponents" expanded="True" />
                   </Node>
                   <Node name="Player" expanded="True">
                     <Node name="Classes" expanded="True" />
@@ -40,6 +38,7 @@
                 </Node>
                 <Node name="Utilities" expanded="True">
                   <Node name="Signal" expanded="True" />
+                  <Node name="MouseLook.cs" selected="True" />
                 </Node>
               </Node>
             </Node>

@@ -49,12 +49,16 @@
      <Compile Include="Assets\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
      <None Include="Assets\Libraries\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
      <None Include="Assets\Libraries\NGUI\Examples\Models\Orc\Orc Skin.shader" />
      <None Include="Assets\Libraries\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
      <None Include="Assets\Libraries\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
      <None Include="Assets\Libraries\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
      <None Include="Assets\Libraries\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Detail.shader" />
      <None Include="Assets\Libraries\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (AlphaClip) .shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Libraries\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
@@ -65,6 +69,8 @@
      <None Include="Assets\Turret\Shaders\AlphaTest_Complete.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
      <None Include="Assets\Libraries\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (SoftClip).shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Reflective.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Particles Additive Culled.shader" />
      <None Include="Assets\Libraries\NGUI\ReadMe - 2.1.4.txt" />
      <None Include="Assets\Libraries\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" />
      <None Include="Assets\Libraries\NGUI\Resources\Shaders\Unlit - Transparent Colored (HardClip).shader" />
@@ -72,6 +78,9 @@
      <None Include="Assets\Libraries\NGUI\Examples\Other\English.txt" />
      <None Include="Assets\Libraries\NGUI\Examples\Other\French.txt" />
      <None Include="Assets\Libraries\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed).shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Vertex Colored.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Only.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
      <None Include="Assets\Libraries\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (HardClip).shader" />
      <None Include="Assets\Libraries\NGUI\Resources\Shaders\Unlit - Additive Colored.shader" />
      <None Include="Assets\Libraries\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />

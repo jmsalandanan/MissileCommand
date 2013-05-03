@@ -37,6 +37,7 @@ public class MainApplication : MonoBehaviour {
 		UIEventListener.Get (buttonBack).onClick += OnBackClicked;
 		UIEventListener.Get (buttonResume).onClick += OnResumeClick;
 		Debug.Log ("Event Started");
+		  Screen.orientation = ScreenOrientation.LandscapeLeft;
 	}
 	
 	// Update is called once per frame

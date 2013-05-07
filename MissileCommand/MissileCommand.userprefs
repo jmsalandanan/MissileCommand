@@ -4,7 +4,7 @@
     <Files>
       <File FileName="Assets/Scripts/Main/MainApplication.cs" Line="89" Column="53" />
       <File FileName="Assets/Scripts/MVCClasses/Player/ViewComponents/PlayerView.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Utilities/Joystick.cs" Line="101" Column="10" />
+      <File FileName="Assets/Scripts/Utilities/Joystick.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MVCClasses/Player/Classes/PlayerMediator.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MVCClasses/Enemy/Classes/EnemyMediator.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MVCClasses/Player/Classes/PlayerController.cs" Line="1" Column="1" />

@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour {
 	}
 	
 	private void onDestroy(){
-		_enemyMediator.enemyHit(name);	
+		_enemyMediator.enemyHit();	
 	}
 	
 	public void init(){

@@ -174,10 +174,9 @@
      <Compile Include="Assets\Scripts\MVCClasses\Player\Signals\PlayerSignals.cs" />
      <Compile Include="Assets\Scripts\MVCClasses\Player\ViewComponents\PlayerView.cs" />
      <Compile Include="Assets\Scripts\Main\MainApplication.cs" />
-     <Compile Include="Assets\Scripts\Utilities\MouseLook.cs" />
+     <Compile Include="Assets\Scripts\Utilities\Joystick.cs" />
      <Compile Include="Assets\Scripts\Utilities\Signal\Signal.cs" />
      <Compile Include="Assets\Scripts\Utilities\SoundManager.cs" />
-     <Compile Include="Assets\VirtualJoystickRegion.cs" />
      <None Include="Assets\Libraries\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
@@ -197,7 +196,6 @@
      <None Include="Assets\Libraries\NGUI\Resources\Shaders\Unlit - Transparent Colored (AlphaClip).shader" />
      <None Include="Assets\Libraries\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
      <None Include="Assets\Libraries\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
-     <None Include="Assets\Turret\Shaders\AlphaTest_Complete.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
      <None Include="Assets\Libraries\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (SoftClip).shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Reflective.shader" />

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PlayerView:MonoBehaviour {
 
-    public RaycastHit hit;
+
     public static Collider collider1 = new Collider();
     private Ray ray;
 	private EnemyView _enemyView;
@@ -27,7 +27,7 @@ public class PlayerView:MonoBehaviour {
 	public static int playerLife;
 	public static int score= 0;
 	private List <GameObject> _baseList = new List<GameObject>();
-	public Transform cameraTransform = Camera.main.transform;
+	public Transform cameraTransform = null;
 	public static int playerAmmo;
 	 private AudioSource _shootAudio;  
 	
@@ -35,7 +35,7 @@ public class PlayerView:MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+		cameraTransform = Camera.main.transform;
     }
   
 	public void init(){
@@ -51,7 +51,6 @@ public class PlayerView:MonoBehaviour {
 		_base3.name = "base3";
 		_base4.name = "base4";
 
-		
 		_baseList.Add(_base);
 		_baseList.Add(_base2);
 		_baseList.Add(_base3);
@@ -78,61 +77,84 @@ public class PlayerView:MonoBehaviour {
 	}
 	
     void Update () {
-     
 		if(!paused){
-			if(Input.GetButtonDown("Fire1")){
-				ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-				PlayerSignals.fireSignal.dispatch();
+			RaycastHit hit;
+			ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+			if(Input.GetButtonDown("Fire1"))
+			{
 				_shootAudio.Play();
-			}
-		
-			if(playerLife <=0||playerAmmo==0){
-				Debug.Log ("Game Over");
-				PlayerSignals.onGameOver.dispatch();
-				UILabel scoreLabel = GameObject.Find("ScoreLabel").GetComponent<UILabel>();
-				scoreLabel.text = score.ToString();
-			}
-			
-		  	if(Input.GetKey(KeyCode.P)){
-				PlayerSignals.onPause.dispatch();
-		  	}
-			
-		}
-
-	}
-	
-	public void fireWeapon(){
-		if(playerAmmo!=0){
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity)){
-            	collider1 = hit.collider;
-            	Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
-            	Debug.Log(collider1.name);
-				Debug.Log (hit);
-				localHit = transform.InverseTransformPoint(hit.point);
-				Debug.Log (localHit);
-				EnemySignals.destroyEnemy.dispatch();		
-			}
-
+				if (Physics.Raycast(ray, out hit, 100f)){
+            		collider1 = hit.collider;
+            		Debug.DrawLine(Camera.main.transform.position, ray.direction, Color.red);
+					Debug.Log (collider1);
+            		Debug.Log(collider1.name);
+					Debug.Log (hit);
+					Debug.Log (hit.collider);
+					Debug.Log (ray.direction);
+					Debug.Log (ray);
+					EnemySignals.destroyEnemy.dispatch();
+					collider1.name = null;
+					collider1 = null;
+				}
+				else{
+					Debug.Log ("Miss!");
+					Debug.DrawLine(Camera.main.transform.position, ray.direction, Color.green);
+				}
 		_playerWeapon.animation.Play("shoot");
 		_playerWeaponFire.particleEmitter.Emit(1);
 		playerAmmo -=1;
 		}
-
-} 
-	public string returnCollider(){
-		return collider1.name;
+						
+			if(playerLife <=0||playerAmmo<=0){
+				Debug.Log ("Game Over");
+				Time.timeScale = 0f;
+				PlayerSignals.disableSignals.dispatch();
+				EnemySignals.disableSignals.dispatch();
+				PlayerSignals.onGameOver.dispatch();
+				UILabel scoreLabel = GameObject.Find("ScoreLabel").GetComponent<UILabel>();
+				scoreLabel.text = score.ToString();
+			}		
+		  	if(Input.GetKey(KeyCode.P)){
+				PlayerSignals.onPause.dispatch();
+		  	}
+					
+		}
 	}
+	
+	public void fireWeapon(){
+		Debug.Log ("asd");
+		/*if(playerAmmo!=0){
+			_shootAudio.Play();
+
+				if (Physics.Raycast(ray, out hit, Mathf.Infinity)){
+            		collider1 = hit.collider;
+            		Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
+            		Debug.Log(collider1.name);
+					Debug.Log (hit);
+					EnemySignals.destroyEnemy.dispatch();
+					collider1.name = null;
+					collider1 = null;
+				}
+				else{
+					Debug.Log ("Miss!");
+	
+				
+				}
+		_playerWeapon.animation.Play("shoot");
+		_playerWeaponFire.particleEmitter.Emit(1);
+		playerAmmo -=1;
+		}*/
+} 
+
 	
 	public void deactivateBase(){
 		foreach(GameObject _baseIns in _baseList){
 			if(_baseIns.name == EnemyView.enemyCollision1.name){
 				_baseIns.SetActive(false);
 				playerLife -= 1;
-				Debug.Log (playerLife);
-				
+				Debug.Log (playerLife);		
 			}
-		}
-			
+		}			
 	}
 	 
     public bool togglePause(){
@@ -140,36 +162,32 @@ public class PlayerView:MonoBehaviour {
 		PlayerSignals.enableSignals.dispatch();
 		EnemySignals.enableSignals.dispatch();
 		PlayerSignals.showPauseMenu.dispatch();
-		GameObject.Find ("Player").GetComponent<MouseLook>().enabled = true;
 		Debug.Log ("UnPause");
 		Time.timeScale = 1f;
          return(false);
        }
-       else{
+        else{
 		Debug.Log ("Pause");
 		PlayerSignals.disableSignals.dispatch();
 		EnemySignals.disableSignals.dispatch();
 		PlayerSignals.showPauseMenu.dispatch();
-		GameObject.Find ("Player").GetComponent<MouseLook>().enabled = false;
 		Time.timeScale = 0f;
          return(true);    
        }
     }
 	
 	public void onMainMenuClicked(){
-		//togglePause ();
 		PlayerSignals.showPauseMenu.dispatch ();
 		PlayerSignals.disableSignals.dispatch();
 		EnemySignals.disableSignals.dispatch();
-				Time.timeScale = 1f;
+		Time.timeScale = 1f;
 	}
 	
 	public void onDestroy(){
 		for(int x=0;x<4;x++){
 			Destroy(_baseList[x]);
-
 		}
-		Destroy(this);
+			Destroy(this);
 			
 	}
 	

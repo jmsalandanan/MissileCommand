@@ -14,6 +14,7 @@ public class EnemyMediator : MonoBehaviour {
 	
 	}
 	public void init(){
+		
 		_enemyView = gameObject.AddComponent<EnemyView>();
 		_enemyView.init();
 	}
@@ -26,8 +27,8 @@ public class EnemyMediator : MonoBehaviour {
 	public void checkEnemy(){
 		_enemyView.checkConditions();	
 	}
-	public void enemyHit(string name){
-		_enemyView.enemyHit(name);
+	public void enemyHit(){
+		_enemyView.enemyHit();
 	}
 	public void onDestroy(){
 		_enemyView.onDestroy();	

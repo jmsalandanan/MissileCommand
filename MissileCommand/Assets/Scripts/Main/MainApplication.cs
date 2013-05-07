@@ -19,6 +19,8 @@ public class MainApplication : MonoBehaviour {
 	public Camera camera1;
 	public Camera camera2;
 	public Camera camera3;
+	public Joystick mouseTransform;
+	public Joystick firePad;
 
 	// Use this for initialization
 	void Start () {
@@ -31,13 +33,12 @@ public class MainApplication : MonoBehaviour {
 		camera3.enabled = false;
 		buttonResume.SetActive(false);
 		buttonReturntoMain.SetActive(false);
-		GameObject.Find ("Player").GetComponent<MouseLook>().enabled =false;
+		//GameObject.Find ("Player").GetComponent<MouseLook>().enabled = false;
 		UIEventListener.Get(buttonStart).onClick += OnButtonStartClicked;
 		UIEventListener.Get (buttonHowTo).onClick += OnButtonHowToClicked;
 		UIEventListener.Get (buttonBack).onClick += OnBackClicked;
 		UIEventListener.Get (buttonResume).onClick += OnResumeClick;
-		Debug.Log ("Event Started");
-		  Screen.orientation = ScreenOrientation.LandscapeLeft;
+		Screen.orientation = ScreenOrientation.LandscapeRight;
 	}
 	
 	// Update is called once per frame
@@ -48,17 +49,25 @@ public class MainApplication : MonoBehaviour {
 		
 		if(_isHowTo){
 		NGUITools.SetActive(MainPanel,false);
-		NGUITools.SetActive (HowToPanel.gameObject,true);
-		
+		NGUITools.SetActive (HowToPanel.gameObject,true);		
 		_isHowTo = false;
 		}
-		
-		if(_isMainMenu)
-		{
+	
+		if(_isMainMenu){
 		NGUITools.SetActive(MainPanel,true);
 		NGUITools.SetActive (HowToPanel.gameObject,false);
 		_isMainMenu = false;
 		}
+		
+		if(firePad.tapCount>0 &&Input.touchCount>0&& Input.GetTouch(0).phase == TouchPhase.Began)
+		{
+			_playerController.fireButtonPressed();
+		}
+		
+		float speed = 3.0f;
+      	float yRot = speed * mouseTransform.position.y;
+       	float xRot = speed * mouseTransform.position.x; 
+        camera2.transform.Rotate(-yRot, xRot, 0.0f);
 	}
 	
 	private void startApplication(){	
@@ -69,12 +78,11 @@ public class MainApplication : MonoBehaviour {
 	NGUITools.SetActive (pausePanel,false);
 	buttonBack.SetActive(false);
 	buttonHowTo.SetActive (false);
-	buttonStart.SetActive(false);
-		
+	buttonStart.SetActive(false);	
 	camera1.enabled = false;
 	camera2.enabled = true;
 	camera3.enabled = false;
-	GameObject.Find ("Player").GetComponent<MouseLook>().enabled = true;
+	//GameObject.Find ("Player").GetComponent<MouseLook>().enabled = true;
 	_enemyController = gameObject.AddComponent<EnemyController>();	
 	_enemyController.init();
 	_playerController = gameObject.AddComponent<PlayerController>();
@@ -119,10 +127,9 @@ public class MainApplication : MonoBehaviour {
 		_playerController.destroy();
 		_enemyController.destroy();
 		DestroyImmediate (_enemyController,true);
-		GameObject.Find ("Player").GetComponent<MouseLook>().enabled = false;
+		//GameObject.Find ("Player").GetComponent<MouseLook>().enabled = false;
 		NGUITools.SetActive(pausePanel,false);
-		NGUITools.SetActive(gameOverPanel,false);
-		
+		NGUITools.SetActive(gameOverPanel,false);	
 	}
 	void onPause(){
 		_playerController.onResumeClicked();	
@@ -137,8 +144,25 @@ public class MainApplication : MonoBehaviour {
 	
 	public void showGameOverScreen(){
 		NGUITools.SetActive (gameOverPanel,true);
-		//camera2.enabled = false;
-		GameObject.Find ("Player").GetComponent<MouseLook>().enabled = false;
+		camera2.enabled = false;
+		//GameObject.Find ("Player").GetComponent<MouseLook>().enabled = false;
 		camera3.enabled = true;
 	}
+	
+		void OnGUI(){
+		if(camera2.enabled)
+		{
+			
+
+   			 GUI.Box(new Rect(Screen.width/2,Screen.height/2, 15, 15), "");
+			 GUI.Label(new Rect(10,10,100,100),"Life:");
+			 GUI.Label(new Rect(40,10,100,100),PlayerView.playerLife.ToString());
+			 GUI.Label(new Rect(10,30,100,100),"Bullets:");
+			 GUI.Label(new Rect(70,30,100,100),PlayerView.playerAmmo.ToString());
+			 GUI.Label(new Rect(500,10,100,100),"Score:");
+			 GUI.Label(new Rect(550,10,100,100),PlayerView.score.ToString ());
+			 GUI.Label(new Rect(500,30,100,100),"Wave:");
+			 GUI.Label(new Rect(550,30,100,100),EnemyView.levelCount.ToString());
+		}
+ }	
 }

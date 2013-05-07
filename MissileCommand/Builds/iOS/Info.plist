@@ -14,11 +14,9 @@
 	<array>
 		<string>Icon.png</string>
 		<string>Icon@2x.png</string>
-		<string>Icon-72.png</string>
-		<string>Icon-144.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.cyscorpions.studio3.dev</string>
+	<string>com.cyscorpions.studio3.${PRODUCT_NAME}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleLocalizations</key>
@@ -63,7 +61,6 @@
 	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>Unity_LoadingActivityIndicatorStyle</key>

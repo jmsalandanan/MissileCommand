@@ -17,8 +17,12 @@ extern "C"
 	extern gpointer*	mono_aot_module_Assembly_UnityScript_firstpass_info; // Assembly-UnityScript-firstpass.dll
 	extern gpointer*	mono_aot_module_Assembly_UnityScript_info; // Assembly-UnityScript.dll
 	extern gpointer*	mono_aot_module_Boo_Lang_info; // Boo.Lang.dll
+	extern gpointer*	mono_aot_module_Mono_Posix_info; // Mono.Posix.dll
 	extern gpointer*	mono_aot_module_Mono_Security_info; // Mono.Security.dll
+	extern gpointer*	mono_aot_module_System_Configuration_info; // System.Configuration.dll
 	extern gpointer*	mono_aot_module_System_Core_info; // System.Core.dll
+	extern gpointer*	mono_aot_module_System_Security_info; // System.Security.dll
+	extern gpointer*	mono_aot_module_System_Xml_info; // System.Xml.dll
 	extern gpointer*	mono_aot_module_System_info; // System.dll
 	extern gpointer*	mono_aot_module_UnityEngine_info; // UnityEngine.dll
 	extern gpointer*	mono_aot_module_mscorlib_info; // mscorlib.dll
@@ -29,14 +33,18 @@ void RegisterMonoModules()
     gEnableGyroscope = false;
 #if !(TARGET_IPHONE_SIMULATOR)
 	mono_aot_only = true;
-	mono_ficall_flag = false;
+	mono_ficall_flag = true;
 	mono_aot_register_module(mono_aot_module_Assembly_CSharp_firstpass_info);
 	mono_aot_register_module(mono_aot_module_Assembly_CSharp_info);
 	mono_aot_register_module(mono_aot_module_Assembly_UnityScript_firstpass_info);
 	mono_aot_register_module(mono_aot_module_Assembly_UnityScript_info);
 	mono_aot_register_module(mono_aot_module_Boo_Lang_info);
+	mono_aot_register_module(mono_aot_module_Mono_Posix_info);
 	mono_aot_register_module(mono_aot_module_Mono_Security_info);
+	mono_aot_register_module(mono_aot_module_System_Configuration_info);
 	mono_aot_register_module(mono_aot_module_System_Core_info);
+	mono_aot_register_module(mono_aot_module_System_Security_info);
+	mono_aot_register_module(mono_aot_module_System_Xml_info);
 	mono_aot_register_module(mono_aot_module_System_info);
 	mono_aot_register_module(mono_aot_module_UnityEngine_info);
 	mono_aot_register_module(mono_aot_module_mscorlib_info);

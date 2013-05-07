@@ -127,7 +127,7 @@ public void checkConditions()
 			}
 		}
 }	
-	public void enemyHit(string name)
+	public void enemyHit()
 	{
 		for(int bmbCtr = 0; bmbCtr < ENEMY_COUNT; bmbCtr++){
 			if(_units[bmbCtr].name == PlayerView.collider1.name)
@@ -136,7 +136,8 @@ public void checkConditions()
 				_units[bmbCtr].SetActive(false);
 				PlayerView.score += (int) _units[bmbCtr].transform.position.y;
 				_units[bmbCtr].transform.FindChild("SmokeTrail").particleEmitter.emit=false;
-					_units[bmbCtr].transform.FindChild("SmokeTrail").particleEmitter.ClearParticles();
+				_units[bmbCtr].transform.FindChild("SmokeTrail").particleEmitter.ClearParticles();
+
 
 			}
 		}
